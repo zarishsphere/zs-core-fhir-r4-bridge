@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    uses: zarishsphere/zs-ops-github-actions/.github/workflows/go-test.yml@main
+    with:
+      go-version: '1.26.1'
+
+  security:
+    uses: zarishsphere/zs-ops-github-actions/.github/workflows/trivy-scan.yml@main
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: { go-version: '1.26.1' }
+      - name: Lint
+        run: |
+          go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+          golangci-lint run ./...

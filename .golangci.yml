@@ -1,0 +1,60 @@
+# ZarishSphere Go linting configuration
+# Applied to all zs-core-* and zs-pkg-* repositories
+# Governance: CONTRIBUTING.md Section 6 (Go Code Standards)
+run:
+  timeout: 5m
+  go: "1.26"
+
+linters:
+  enable:
+    - errcheck        # Check for unchecked errors
+    - gosimple        # Simplify code
+    - govet           # Correctness checks
+    - ineffassign     # Detect ineffectual assignments
+    - staticcheck     # Advanced static analysis
+    - unused          # Find unused code
+    - gocritic        # Opinionated code checks
+    - gofmt           # Code formatting
+    - goimports       # Import grouping
+    - misspell        # Spelling errors
+    - revive          # General linting
+    - noctx           # Detect http.Request without context
+    - bodyclose       # HTTP response body close
+    - sqlcloserows    # DB rows close
+    - rowserrcheck    # DB rows.Err check
+    - gosec           # Security checks
+    - prealloc        # Slice preallocation
+    - exportloopref   # Export loop variable reference
+
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+  gosec:
+    excludes:
+      - G304  # File inclusion via variable (needed for config loading)
+  govet:
+    enable:
+      - shadow
+  revive:
+    rules:
+      - name: exported
+      - name: var-naming
+      - name: error-return
+      - name: error-naming
+      - name: error-strings
+      - name: receiver-naming
+      - name: increment-decrement
+      - name: range
+      - name: time-naming
+      - name: indent-error-flow
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gosec
+        - errcheck
+    - path: cmd/
+      linters:
+        - gochecknoinits

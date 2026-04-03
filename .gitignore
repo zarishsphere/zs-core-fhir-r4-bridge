@@ -1,0 +1,51 @@
+# Binaries
+zs-fhir-*
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test artifacts
+coverage.out
+coverage.html
+*.test
+*.bench
+
+# Build
+dist/
+build/
+__pycache__/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Config with secrets — never commit
+*.env
+.env.local
+config/secrets.yaml
+config/secrets.yml
+
+# Go
+vendor/
+go.sum.bak
+
+# Docker
+.dockerignore
+
+# FHIR IG Publisher output
+/output/
+/temp/
+/fsh-generated/
+
+# Validator CLI download
+validator_cli.jar
+publisher.jar
+
+# Node (sushi)
+node_modules/
+package-lock.json

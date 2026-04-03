@@ -3,7 +3,7 @@
 # Governance: CONTRIBUTING.md Section 6 (Go Code Standards)
 run:
   timeout: 5m
-  go: "1.26"
+  go: "1.21"
 
 linters:
   enable:

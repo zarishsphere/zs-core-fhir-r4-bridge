@@ -1,9 +1,9 @@
-name: CI — zs-core-fhir-r4-bridge
+name: CI - zs-core-fhir-r4-bridge
 
-on:
+"on":
   push:
     branches: [main]
-  pull_request:
+  pull_request: null
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
